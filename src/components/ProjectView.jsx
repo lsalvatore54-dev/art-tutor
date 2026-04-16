@@ -35,28 +35,14 @@ async function regenerateTutorial(project, newLevel) {
 
   contentParts.push({
     type: 'text',
-    text: `Sei un insegnante d'arte esperto. Rigenera il tutorial per questo quadro per un ${levelDescriptions[newLevel]}.
+    text: `Sei un insegnante d'arte. Rigenera il tutorial per questo quadro.
 
-Progetto: "${project.title}"
+Progetto: "${project.title}" — Livello: ${levelDescriptions[newLevel]}
 
 Rispondi SOLO con JSON valido, nessun testo extra, nessun backtick:
-{
-  "analysis": "breve analisi stile e tecnica (2-3 frasi)",
-  "technique": "tecnica specifica per questo livello",
-  "materials": [
-    { "name": "materiale", "budget": "opzione €", "mid": "opzione media €", "essential": true }
-  ],
-  "steps": [
-    {
-      "number": 1,
-      "title": "Titolo step",
-      "description": "Descrizione dettagliata per il livello indicato.",
-      "voiceover": "Testo audio incoraggiante, tono caldo, usa 'tu', circa 40-60 parole.",
-      "duration": "minuti",
-      "tip": "consiglio opzionale"
-    }
-  ]
-}`
+{"analysis":"stile e colori in 2 frasi","technique":"tecnica per questo livello","materials":[{"name":"materiale","budget":"opzione €","mid":"opzione media €","essential":true}],"steps":[{"number":1,"title":"titolo","description":"Descrizione pratica max 3 frasi.","voiceover":"Testo audio incoraggiante, usa tu, max 40 parole.","duration":"minuti","tip":"consiglio o null"}]}
+
+Genera esattamente 7 step. Materiali max 6 voci.`
   })
 
   const res = await fetch('/api/claude', {
@@ -64,7 +50,7 @@ Rispondi SOLO con JSON valido, nessun testo extra, nessun backtick:
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       model: 'claude-opus-4-6',
-      max_tokens: 4000,
+      max_tokens: 6000,
       messages: [{ role: 'user', content: contentParts }]
     })
   })

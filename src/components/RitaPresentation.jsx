@@ -89,15 +89,30 @@ export default function RitaPresentation({ onEnterApp }) {
   }, [])
 
   const speak = (text, onEnd) => {
-    if (!window.speechSynthesis) { onEnd && onEnd(); return }
+    if (!window.speechSynthesis) {
+      autoRef.current = setTimeout(() => { onEnd && onEnd() }, 4000)
+      return
+    }
     window.speechSynthesis.cancel()
     const u = new SpeechSynthesisUtterance(text)
     u.lang = 'it-IT'
-    u.rate = 0.88
-    u.pitch = 1.05
+    u.rate = 0.78
+    u.pitch = 1.0
     if (selectedVoice) u.voice = selectedVoice
-    u.onend = () => { setPlaying(false); onEnd && onEnd() }
-    u.onerror = () => { setPlaying(false); onEnd && onEnd() }
+
+    const estimatedMs = Math.max(4000, text.length * 65)
+    let ended = false
+    const doEnd = () => {
+      if (ended) return
+      ended = true
+      setPlaying(false)
+      onEnd && onEnd()
+    }
+
+    u.onend = () => { autoRef.current = setTimeout(doEnd, 2500) }
+    u.onerror = () => { autoRef.current = setTimeout(doEnd, 2000) }
+    autoRef.current = setTimeout(doEnd, estimatedMs + 3000)
+
     window.speechSynthesis.speak(u)
     setPlaying(true)
   }
@@ -109,7 +124,7 @@ export default function RitaPresentation({ onEnterApp }) {
         autoRef.current = setTimeout(() => {
           setCurrent(idx + 1)
           playSlide(idx + 1)
-        }, 1200)
+        }, 800)
       }
     })
   }
