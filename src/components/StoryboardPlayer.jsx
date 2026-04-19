@@ -228,7 +228,7 @@ const s = {
   closeBtn: { background: 'rgba(255,255,255,0.15)', border: 'none', color: 'white', width: 36, height: 36, borderRadius: '50%', fontSize: '1rem', cursor: 'pointer', flexShrink: 0 },
   dotsRow: { display: 'flex', gap: 4, padding: '0.75rem 1.25rem', flexWrap: 'wrap' },
   dot: { flex: '1 0 auto', maxWidth: 40, height: 6, borderRadius: 3, cursor: 'pointer', transition: 'all 0.3s' },
-  card: { margin: '0.75rem 1.25rem', background: 'rgba(255,255,255,0.07)', borderRadius: 16, padding: '1.25rem', backdropFilter: 'blur(10px)', animation: 'fadeIn 0.35s ease both' },
+  card: { margin: '0.75rem 1.25rem', background: 'rgba(255,255,255,0.14)', borderRadius: 16, padding: '1.25rem', border: '1px solid rgba(255,255,255,0.25)', boxShadow: '0 8px 32px rgba(0,0,0,0.4)', animation: 'fadeIn 0.35s ease both' },
   cardTop: { display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1rem' },
   stepBadge: { display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4 },
   stepCircle: { width: 48, height: 48, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.3rem', fontWeight: 800, color: 'white', boxShadow: '0 4px 12px rgba(0,0,0,0.3)' },
