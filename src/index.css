@@ -1,0 +1,71 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --ink: #1a0f0f;
+  --canvas: #faf7f2;
+  --canvas-alt: #f2ede4;
+  --accent: #c1440e;
+  --accent-soft: #e8927c;
+  --gold: #c9962a;
+  --gold-light: #f5e6c0;
+  --violet: #5c3d8f;
+  --violet-light: #ede5f8;
+  --green: #2d6a4f;
+  --red-level: #9b1d1d;
+  --muted: #7a6f65;
+  --border: #ddd5c8;
+  --shadow: 0 2px 16px rgba(26,15,15,0.10);
+  --shadow-lg: 0 8px 40px rgba(26,15,15,0.15);
+  --radius: 12px;
+  --radius-lg: 20px;
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body: 'DM Sans', system-ui, sans-serif;
+  --transition: 0.22s cubic-bezier(.4,0,.2,1);
+}
+
+html { font-size: 16px; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--canvas);
+  color: var(--ink);
+  min-height: 100vh;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,h2,h3 { font-family: var(--font-display); line-height: 1.2; }
+
+button {
+  font-family: var(--font-body);
+  cursor: pointer;
+  border: none;
+  outline: none;
+  transition: all var(--transition);
+}
+
+input, textarea, select {
+  font-family: var(--font-body);
+  outline: none;
+  transition: border var(--transition);
+}
+
+img { max-width: 100%; display: block; }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--canvas-alt); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+/* Utilities */
+.sr-only { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0,0,0,0); }
+
+/* Animazioni */
+@keyframes fadeIn { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
+@keyframes slideUp { from { opacity:0; transform:translateY(30px); } to { opacity:1; transform:translateY(0); } }
+@keyframes pulse { 0%,100% { transform:scale(1); } 50% { transform:scale(1.05); } }
+@keyframes spin { to { transform:rotate(360deg); } }
+@keyframes paintDrop { 0% { transform:scaleY(0); transform-origin:top; } 100% { transform:scaleY(1); transform-origin:top; } }
+
+.fade-in { animation: fadeIn 0.4s ease both; }
+.slide-up { animation: slideUp 0.5s ease both; }
